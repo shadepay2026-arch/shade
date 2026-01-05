@@ -135,10 +135,10 @@ export default function Footer() {
             © 2026 SHADE Protocol. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link href="#" className="text-sm text-gray-600 hover:text-white transition-colors">
+            <Link href="/terms" className="text-sm text-gray-600 hover:text-white transition-colors">
               Terms
             </Link>
-            <Link href="#" className="text-sm text-gray-600 hover:text-white transition-colors">
+            <Link href="/privacy" className="text-sm text-gray-600 hover:text-white transition-colors">
               Privacy
             </Link>
           </div>
