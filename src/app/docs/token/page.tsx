@@ -104,19 +104,19 @@ export default function TokenPage() {
             </tr>
             <tr className="border-b border-shade-700">
               <td className="px-4 py-3 font-medium text-orange-400">Bronze</td>
-              <td className="px-4 py-3">100 $SHADE</td>
+              <td className="px-4 py-3">10,000 $SHADE</td>
               <td className="px-4 py-3">1,000 USDC</td>
               <td className="px-4 py-3">1x</td>
             </tr>
             <tr className="border-b border-shade-700">
               <td className="px-4 py-3 font-medium text-slate-300">Silver</td>
-              <td className="px-4 py-3">1,000 $SHADE</td>
+              <td className="px-4 py-3">100,000 $SHADE</td>
               <td className="px-4 py-3">5,000 USDC</td>
               <td className="px-4 py-3">2x</td>
             </tr>
             <tr>
               <td className="px-4 py-3 font-medium text-yellow-400">Gold</td>
-              <td className="px-4 py-3">10,000 $SHADE</td>
+              <td className="px-4 py-3">500,000 $SHADE</td>
               <td className="px-4 py-3">10,000 USDC</td>
               <td className="px-4 py-3">5x</td>
             </tr>

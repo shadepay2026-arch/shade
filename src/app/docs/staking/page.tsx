@@ -57,7 +57,7 @@ export default function StakingPage() {
         </div>
         <div className="bg-shade-800 rounded-lg p-4 border border-orange-500/30">
           <div className="text-orange-400 font-bold text-lg mb-2">Bronze</div>
-          <p className="text-2xl font-bold mb-1">100+</p>
+          <p className="text-2xl font-bold mb-1">10K+</p>
           <p className="text-xs text-gray-500 mb-3">$SHADE</p>
           <div className="text-sm text-gray-400">
             <p>Cap: 1,000 USDC</p>
@@ -66,7 +66,7 @@ export default function StakingPage() {
         </div>
         <div className="bg-shade-800 rounded-lg p-4 border border-slate-400/30">
           <div className="text-slate-300 font-bold text-lg mb-2">Silver</div>
-          <p className="text-2xl font-bold mb-1">1,000+</p>
+          <p className="text-2xl font-bold mb-1">100K+</p>
           <p className="text-xs text-gray-500 mb-3">$SHADE</p>
           <div className="text-sm text-gray-400">
             <p>Cap: 5,000 USDC</p>
@@ -75,7 +75,7 @@ export default function StakingPage() {
         </div>
         <div className="bg-shade-800 rounded-lg p-4 border border-yellow-500/30">
           <div className="text-yellow-400 font-bold text-lg mb-2">Gold</div>
-          <p className="text-2xl font-bold mb-1">10,000+</p>
+          <p className="text-2xl font-bold mb-1">500K+</p>
           <p className="text-xs text-gray-500 mb-3">$SHADE</p>
           <div className="text-sm text-gray-400">
             <p>Cap: 10,000 USDC</p>

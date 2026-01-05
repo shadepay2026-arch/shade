@@ -8,20 +8,20 @@ import Image from 'next/image'
 
 // Mock staking data
 const mockStakingData = {
-  stakedAmount: 1250,
-  tier: 'Silver',
-  tierNumber: 2,
+  stakedAmount: 25000,
+  tier: 'Bronze',
+  tierNumber: 1,
   pendingRewards: 12.45,
-  nextTier: 'Gold',
-  nextTierRequirement: 10000,
+  nextTier: 'Silver',
+  nextTierRequirement: 100000,
   apy: 8.5,
 }
 
 const tierThresholds = [
   { name: 'None', min: 0, color: 'gray' },
-  { name: 'Bronze', min: 100, color: 'orange' },
-  { name: 'Silver', min: 1000, color: 'slate' },
-  { name: 'Gold', min: 10000, color: 'yellow' },
+  { name: 'Bronze', min: 10000, color: 'orange' },
+  { name: 'Silver', min: 100000, color: 'slate' },
+  { name: 'Gold', min: 500000, color: 'yellow' },
 ]
 
 // Mock authorization data
@@ -195,7 +195,7 @@ function StakingPanel() {
   const [showStakeModal, setShowStakeModal] = useState(false)
   const [stakeAction, setStakeAction] = useState<'stake' | 'unstake'>('stake')
   
-  const progressToNext = ((mockStakingData.stakedAmount - 1000) / (mockStakingData.nextTierRequirement - 1000)) * 100
+  const progressToNext = ((mockStakingData.stakedAmount - 10000) / (mockStakingData.nextTierRequirement - 10000)) * 100
 
   return (
     <motion.div
@@ -302,7 +302,7 @@ function StakingPanel() {
       {/* Tier Benefits */}
       <div className="mt-4 card">
         <h3 className="font-semibold mb-3">Tier Benefits</h3>
-        <div className="grid grid-cols-4 gap-2 text-center text-sm">
+          <div className="grid grid-cols-4 gap-2 text-center text-sm">
           {tierThresholds.map((tier, i) => (
             <div 
               key={tier.name}
@@ -318,8 +318,8 @@ function StakingPanel() {
                 tier.name === 'Bronze' ? 'text-orange-400' :
                 'text-gray-500'
               }`}>{tier.name}</p>
-              <p className="text-xs text-gray-400 mt-1">{tier.min.toLocaleString()}+ $SHADE</p>
-              <p className="text-xs text-gray-500 mt-1">{i === 0 ? '0.5x' : i === 1 ? '1x' : i === 2 ? '5x' : '10x'} Cap</p>
+              <p className="text-xs text-gray-400 mt-1">{tier.min >= 1000 ? `${(tier.min / 1000).toLocaleString()}K` : tier.min}+ $SHADE</p>
+              <p className="text-xs text-gray-500 mt-1">{i === 0 ? '100' : i === 1 ? '1K' : i === 2 ? '5K' : '10K'} Cap</p>
             </div>
           ))}
         </div>
