@@ -9,6 +9,7 @@ const sidebarLinks = [
   { href: '/docs/getting-started', label: 'Getting Started' },
   { href: '/docs/concepts', label: 'Core Concepts' },
   { href: '/docs/authorization', label: 'Authorization' },
+  { href: '/docs/staking', label: 'Staking' },
   { href: '/docs/token', label: '$SHADE Token' },
   { href: '/docs/faq', label: 'FAQ' },
 ]

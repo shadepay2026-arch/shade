@@ -51,45 +51,100 @@ export default function TokenPage() {
 
       <h2 className="text-2xl font-bold mb-4">Staking Tiers</h2>
       <p className="text-gray-300 mb-4">
-        Your staked $SHADE determines your access tier in the protocol:
+        Your staked $SHADE determines your access tier in the protocol. Higher tiers unlock 
+        greater spending caps and fee share multipliers:
       </p>
       <div className="overflow-x-auto mb-8">
         <table className="w-full text-left text-sm">
           <thead className="bg-shade-800">
             <tr>
               <th className="px-4 py-3 rounded-tl-lg">Tier</th>
-              <th className="px-4 py-3">Stake</th>
-              <th className="px-4 py-3">Fee Share</th>
-              <th className="px-4 py-3 rounded-tr-lg">Governance Weight</th>
+              <th className="px-4 py-3">Min Stake</th>
+              <th className="px-4 py-3">Spending Cap</th>
+              <th className="px-4 py-3 rounded-tr-lg">Fee Share</th>
             </tr>
           </thead>
           <tbody className="text-gray-300">
             <tr className="border-b border-shade-700">
-              <td className="px-4 py-3 font-medium">Basic</td>
+              <td className="px-4 py-3 font-medium text-gray-500">None</td>
               <td className="px-4 py-3">0 $SHADE</td>
+              <td className="px-4 py-3">100 USDC</td>
               <td className="px-4 py-3">0%</td>
-              <td className="px-4 py-3">None</td>
             </tr>
             <tr className="border-b border-shade-700">
-              <td className="px-4 py-3 font-medium text-brand-blue">Standard</td>
+              <td className="px-4 py-3 font-medium text-orange-400">Bronze</td>
+              <td className="px-4 py-3">100 $SHADE</td>
+              <td className="px-4 py-3">1,000 USDC</td>
+              <td className="px-4 py-3">1x</td>
+            </tr>
+            <tr className="border-b border-shade-700">
+              <td className="px-4 py-3 font-medium text-slate-300">Silver</td>
               <td className="px-4 py-3">1,000 $SHADE</td>
-              <td className="px-4 py-3">1x</td>
-              <td className="px-4 py-3">1x</td>
-            </tr>
-            <tr className="border-b border-shade-700">
-              <td className="px-4 py-3 font-medium text-brand-purple">Premium</td>
-              <td className="px-4 py-3">10,000 $SHADE</td>
-              <td className="px-4 py-3">2x</td>
+              <td className="px-4 py-3">5,000 USDC</td>
               <td className="px-4 py-3">2x</td>
             </tr>
             <tr>
-              <td className="px-4 py-3 font-medium text-yellow-400">Enterprise</td>
-              <td className="px-4 py-3">100,000 $SHADE</td>
-              <td className="px-4 py-3">5x</td>
+              <td className="px-4 py-3 font-medium text-yellow-400">Gold</td>
+              <td className="px-4 py-3">10,000 $SHADE</td>
+              <td className="px-4 py-3">10,000 USDC</td>
               <td className="px-4 py-3">5x</td>
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <h2 className="text-2xl font-bold mb-4">How Staking Works</h2>
+      <div className="space-y-4 mb-8">
+        <div className="bg-shade-800 rounded-lg p-6">
+          <h3 className="font-semibold mb-3">1. Stake $SHADE</h3>
+          <p className="text-gray-400 text-sm mb-2">
+            Connect your wallet and stake $SHADE tokens to the protocol. Your tokens are 
+            locked in a staking contract and contribute to the total staked supply.
+          </p>
+          <code className="text-xs bg-shade-900 px-2 py-1 rounded text-brand-blue">
+            stake(amount) → StakerAccount created/updated
+          </code>
+        </div>
+        <div className="bg-shade-800 rounded-lg p-6">
+          <h3 className="font-semibold mb-3">2. Tier Automatically Assigned</h3>
+          <p className="text-gray-400 text-sm mb-2">
+            Based on your staked amount, you are automatically assigned a tier. This determines 
+            your maximum authorization spending cap.
+          </p>
+          <code className="text-xs bg-shade-900 px-2 py-1 rounded text-brand-blue">
+            tier = calculate_tier(staked_amount)
+          </code>
+        </div>
+        <div className="bg-shade-800 rounded-lg p-6">
+          <h3 className="font-semibold mb-3">3. Earn Fee Rewards</h3>
+          <p className="text-gray-400 text-sm mb-2">
+            A 0.1% fee is collected on every spend transaction. These fees accumulate in the 
+            protocol and are distributed proportionally to stakers based on their stake.
+          </p>
+          <code className="text-xs bg-shade-900 px-2 py-1 rounded text-brand-blue">
+            your_reward = (your_stake / total_staked) × collected_fees
+          </code>
+        </div>
+        <div className="bg-shade-800 rounded-lg p-6">
+          <h3 className="font-semibold mb-3">4. Claim Rewards</h3>
+          <p className="text-gray-400 text-sm mb-2">
+            Claim your accumulated rewards at any time. Rewards are paid in the same token 
+            used for spending (e.g., USDC).
+          </p>
+          <code className="text-xs bg-shade-900 px-2 py-1 rounded text-brand-blue">
+            claim_rewards() → USDC transferred to wallet
+          </code>
+        </div>
+        <div className="bg-shade-800 rounded-lg p-6">
+          <h3 className="font-semibold mb-3">5. Unstake Anytime</h3>
+          <p className="text-gray-400 text-sm mb-2">
+            You can unstake your $SHADE at any time. Your tier will be recalculated and 
+            any unclaimed rewards remain available.
+          </p>
+          <code className="text-xs bg-shade-900 px-2 py-1 rounded text-brand-blue">
+            unstake(amount) → $SHADE returned to wallet
+          </code>
+        </div>
       </div>
 
       <h2 className="text-2xl font-bold mb-4">How to Acquire $SHADE</h2>
