@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #030303;
+  --bg-secondary: #0a0a0a;
+  --brand-blue: #3B82F6;
+  --brand-cyan: #06B6D4;
+  --brand-purple: #7C3AED;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-primary);
+  color: #ffffff;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Chessboard background pattern */
+.bg-chess {
+  background-image: 
+    linear-gradient(45deg, rgba(59, 130, 246, 0.03) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(59, 130, 246, 0.03) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(124, 58, 237, 0.03) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(124, 58, 237, 0.03) 75%);
+  background-size: 40px 40px;
+  background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+}
+
+/* Alternative checkerboard with brand colors */
+.bg-checkerboard {
+  background-color: #030303;
+  background-image: 
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(59, 130, 246, 0.06) 0deg 90deg,
+      rgba(124, 58, 237, 0.03) 90deg 180deg
+    );
+  background-size: 40px 40px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3B82F6;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #06B6D4 0%, #3B82F6 50%, #7C3AED 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effects */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #06B6D4, #3B82F6, #7C3AED);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Background grid pattern */
+.bg-grid {
+  background-image: 
+    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Radial gradient overlay */
+.bg-radial {
+  background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+}
+
+/* Button styles */
+.btn-primary {
+  @apply relative px-8 py-3 font-medium rounded-lg 
+         transition-all duration-300
+         bg-gradient-to-r from-brand-blue to-brand-purple text-white
+         hover:shadow-[0_0_30px_rgba(59,130,246,0.5)];
+}
+
+.btn-secondary {
+  @apply relative px-8 py-3 border border-shade-500 text-white font-medium rounded-lg 
+         transition-all duration-300 hover:border-brand-blue hover:text-brand-blue;
+}
+
+/* Card styles */
+.card {
+  @apply relative bg-shade-900/50 backdrop-blur-sm border border-shade-700 rounded-2xl p-6
+         transition-all duration-300 hover:border-brand-blue/50;
+}
+
+/* Feature tag */
+.tag {
+  @apply inline-block px-3 py-1 text-xs font-medium rounded-full border
+         bg-brand-blue/10 text-brand-blue border-brand-blue/30;
+}
