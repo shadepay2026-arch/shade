@@ -265,8 +265,8 @@ function StakingPanel() {
             <div>
               <p className="text-sm text-gray-400 mb-1">Pending Rewards</p>
               <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-bold gradient-text">{mockStakingData.pendingRewards.toFixed(2)}</span>
-                <span className="text-gray-400">USDC</span>
+                <span className="text-3xl font-bold text-green-400">{mockStakingData.pendingRewards.toFixed(2)}</span>
+                <span className="text-green-400 font-medium">USDC</span>
               </div>
             </div>
             <div className="text-right">
@@ -275,9 +275,11 @@ function StakingPanel() {
             </div>
           </div>
 
-          <p className="text-sm text-gray-400 mb-4">
-            Earn fees from all protocol activity. Rewards accumulate in real-time.
-          </p>
+          <div className="p-3 bg-shade-800/50 rounded-lg border border-shade-700 mb-4">
+            <p className="text-xs text-gray-400">
+              <span className="text-yellow-400">Stake $SHADE</span> → <span className="text-green-400">Earn USDC</span> from 0.1% protocol fees
+            </p>
+          </div>
 
           <button 
             className="w-full btn-primary flex items-center justify-center gap-2"
@@ -286,7 +288,7 @@ function StakingPanel() {
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            Claim Rewards
+            Claim USDC Rewards
           </button>
 
           {isDemo && (

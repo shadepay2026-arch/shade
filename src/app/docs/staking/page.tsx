@@ -3,8 +3,30 @@ export default function StakingPage() {
     <div>
       <h1 className="text-4xl font-bold mb-4">Staking</h1>
       <p className="text-xl text-gray-400 mb-8">
-        Stake $SHADE to unlock higher spending caps and earn protocol fees.
+        Stake $SHADE to unlock higher spending caps and earn USDC from protocol fees.
       </p>
+
+      <div className="bg-brand-blue/10 border border-brand-blue/30 rounded-lg p-6 mb-8">
+        <h3 className="font-semibold mb-3">Two-Token System</h3>
+        <div className="grid md:grid-cols-2 gap-4 text-sm">
+          <div className="bg-shade-800 rounded-lg p-4">
+            <p className="text-yellow-400 font-semibold mb-2">$SHADE Token</p>
+            <ul className="text-gray-300 space-y-1">
+              <li>Launched on Pump.fun</li>
+              <li>Stake to unlock tiers</li>
+              <li>Governance voting</li>
+            </ul>
+          </div>
+          <div className="bg-shade-800 rounded-lg p-4">
+            <p className="text-green-400 font-semibold mb-2">USDC (Rewards)</p>
+            <ul className="text-gray-300 space-y-1">
+              <li>LPs deposit to Fog Pools</li>
+              <li>Users spend from Fog Pools</li>
+              <li>0.1% fee → distributed to stakers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
       <h2 className="text-2xl font-bold mb-4">Why Stake?</h2>
       <p className="text-gray-300 mb-6">
@@ -13,7 +35,7 @@ export default function StakingPage() {
       </p>
       <ul className="list-disc list-inside text-gray-300 space-y-2 mb-8">
         <li><strong>Unlock higher tiers</strong> with increased authorization spending caps</li>
-        <li><strong>Earn passive income</strong> from protocol fees on every transaction</li>
+        <li><strong>Earn USDC</strong> from protocol fees on every spend transaction</li>
         <li><strong>Support the protocol</strong> by providing economic security</li>
         <li><strong>Gain governance rights</strong> to vote on protocol parameters</li>
       </ul>
@@ -64,24 +86,51 @@ export default function StakingPage() {
 
       <h2 className="text-2xl font-bold mb-4">Fee Distribution</h2>
       <p className="text-gray-300 mb-4">
-        Every time someone spends using an authorization, a small fee (0.1%) is collected 
-        by the protocol. These fees are distributed to stakers proportionally:
+        Every time someone spends USDC using an authorization, a 0.1% fee is collected. 
+        These USDC fees are distributed to $SHADE stakers proportionally:
       </p>
+
+      <div className="bg-shade-800 rounded-lg p-6 mb-8">
+        <h4 className="font-semibold mb-4">The Flow</h4>
+        <div className="text-sm text-gray-300 space-y-3 font-mono">
+          <div className="flex items-center gap-2">
+            <span className="text-gray-500">1.</span>
+            <span>LPs deposit <span className="text-green-400">USDC</span> → Fog Pool</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-gray-500">2.</span>
+            <span>User spends <span className="text-green-400">USDC</span> from Fog Pool via authorization</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-gray-500">3.</span>
+            <span>0.1% fee collected in <span className="text-green-400">USDC</span> → Fee Vault</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-gray-500">4.</span>
+            <span><span className="text-green-400">USDC</span> distributed to <span className="text-yellow-400">$SHADE</span> stakers</span>
+          </div>
+        </div>
+      </div>
       
       <div className="bg-shade-800 rounded-lg p-6 mb-8">
         <h4 className="font-semibold mb-4">Example</h4>
         <div className="text-sm text-gray-300 space-y-2">
-          <p>Alice spends <span className="text-brand-blue">1,000 USDC</span> using her authorization</p>
+          <p>Alice spends <span className="text-green-400">1,000 USDC</span> using her authorization</p>
           <p>Protocol collects <span className="text-green-400">1 USDC</span> fee (0.1%)</p>
           <p>Bob has staked <span className="text-yellow-400">5,000 $SHADE</span> (50% of total staked)</p>
           <p>Bob earns <span className="text-green-400">0.50 USDC</span> from this transaction</p>
         </div>
+        <div className="mt-4 pt-4 border-t border-shade-700">
+          <p className="text-xs text-gray-500">
+            Note: Bob staked $SHADE but earns USDC. This creates real yield from protocol activity.
+          </p>
+        </div>
       </div>
 
       <div className="bg-shade-800 rounded-lg p-6 mb-8 font-mono text-sm">
-        <p className="text-gray-500 mb-2">// Fee calculation</p>
-        <p className="text-gray-300">fee = spend_amount × 0.001</p>
-        <p className="text-gray-300">your_share = fee × (your_stake / total_staked)</p>
+        <p className="text-gray-500 mb-2">// Smart contract fee calculation</p>
+        <p className="text-gray-300">usdc_fee = spend_amount × 0.001</p>
+        <p className="text-gray-300">your_usdc_reward = usdc_fee × (your_shade_stake / total_shade_staked)</p>
       </div>
 
       <h2 className="text-2xl font-bold mb-4">Staking Flow</h2>
@@ -113,19 +162,31 @@ export default function StakingPage() {
 
       <h2 className="text-2xl font-bold mb-4">Claiming Rewards</h2>
       <p className="text-gray-300 mb-4">
-        Rewards accumulate in real-time as protocol fees are collected. You can claim 
-        your rewards at any time without unstaking.
+        USDC rewards accumulate as protocol fees are collected. You can claim 
+        your rewards at any time without unstaking your $SHADE.
       </p>
       <div className="bg-shade-800 rounded-lg p-6 mb-8">
         <div className="flex items-center justify-between mb-4">
-          <span className="text-gray-400">Pending Rewards</span>
-          <span className="text-2xl font-bold text-green-400">12.45 USDC</span>
+          <div>
+            <span className="text-gray-400 text-sm">Pending Rewards</span>
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl font-bold text-green-400">12.45</span>
+              <span className="text-green-400">USDC</span>
+            </div>
+          </div>
+          <div className="text-right">
+            <span className="text-gray-400 text-sm">Your Stake</span>
+            <div className="flex items-baseline gap-2">
+              <span className="text-xl font-bold text-yellow-400">5,000</span>
+              <span className="text-yellow-400 text-sm">$SHADE</span>
+            </div>
+          </div>
         </div>
         <button className="w-full py-3 bg-brand-blue rounded-lg font-semibold hover:bg-brand-blue/80 transition-colors">
-          Claim Rewards
+          Claim USDC Rewards
         </button>
         <p className="text-xs text-gray-500 mt-3 text-center">
-          Rewards are paid in USDC directly to your wallet
+          USDC is sent directly to your wallet. Your $SHADE stake remains locked.
         </p>
       </div>
 

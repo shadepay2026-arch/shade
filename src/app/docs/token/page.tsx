@@ -13,6 +13,37 @@ export default function TokenPage() {
         and earning protocol fees.
       </p>
 
+      <div className="bg-brand-blue/10 border border-brand-blue/30 rounded-lg p-6 mb-8">
+        <h3 className="font-semibold mb-3">Two-Token Economy</h3>
+        <p className="text-gray-300 text-sm mb-4">
+          SHADE Protocol uses two tokens with distinct roles:
+        </p>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="bg-shade-800 rounded-lg p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-8 h-8 rounded-full bg-yellow-500/20 flex items-center justify-center">
+                <span className="text-yellow-400 font-bold text-sm">$</span>
+              </div>
+              <span className="font-semibold text-yellow-400">$SHADE</span>
+            </div>
+            <p className="text-xs text-gray-400">
+              Governance token launched on Pump.fun. Stake to unlock tiers and earn rewards.
+            </p>
+          </div>
+          <div className="bg-shade-800 rounded-lg p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
+                <span className="text-green-400 font-bold text-sm">$</span>
+              </div>
+              <span className="font-semibold text-green-400">USDC</span>
+            </div>
+            <p className="text-xs text-gray-400">
+              Stablecoin used in Fog Pools. Fees collected in USDC are distributed to stakers.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <h2 className="text-2xl font-bold mb-4">Token Utility</h2>
       <div className="grid md:grid-cols-2 gap-4 mb-8">
         <div className="bg-shade-800 rounded-lg p-6">
@@ -20,15 +51,15 @@ export default function TokenPage() {
           <h3 className="font-semibold mb-2">Stake for Access</h3>
           <p className="text-sm text-gray-400">
             Stake $SHADE to unlock higher authorization tiers with increased spending 
-            limits and longer durations.
+            limits (up to 10,000 USDC for Gold tier).
           </p>
         </div>
         <div className="bg-shade-800 rounded-lg p-6">
           <div className="text-2xl font-bold text-brand-blue mb-2">02</div>
-          <h3 className="font-semibold mb-2">Fee Sharing</h3>
+          <h3 className="font-semibold mb-2">Earn USDC</h3>
           <p className="text-sm text-gray-400">
-            Stakers earn a share of protocol fees generated from authorization 
-            requests and Fog Pool activity.
+            Stakers earn <span className="text-green-400">USDC</span> from the 0.1% fee 
+            on every spend transaction. Real yield, not token emissions.
           </p>
         </div>
         <div className="bg-shade-800 rounded-lg p-6">
