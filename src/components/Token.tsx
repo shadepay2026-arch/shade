@@ -107,7 +107,7 @@ export default function Token() {
           className="text-center mt-16"
         >
           <a 
-            href="https://pump.fun" 
+            href="https://pump.fun/coin/GnSY5HZ9TeG1FmzJjBi8srwTtsBQG1vRt7PKq3NBpump" 
             target="_blank" 
             rel="noopener noreferrer"
             className="btn-primary inline-flex items-center gap-2"
