@@ -41,6 +41,9 @@ export default function Navbar() {
             <Link href="#token" className="text-sm text-gray-400 hover:text-white transition-colors">
               $SHADE
             </Link>
+            <Link href="/docs" className="text-sm text-gray-400 hover:text-white transition-colors">
+              Docs
+            </Link>
             <Link href="/app" className="btn-primary text-sm">
               Launch App
             </Link>

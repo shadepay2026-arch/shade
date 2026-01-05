@@ -84,6 +84,11 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">Resources</h4>
             <ul className="space-y-3">
               <li>
+                <Link href="/docs" className="text-sm text-gray-500 hover:text-white transition-colors">
+                  Documentation
+                </Link>
+              </li>
+              <li>
                 <a 
                   href="https://github.com/shadepay2026-arch/shade" 
                   target="_blank"
@@ -92,11 +97,6 @@ export default function Footer() {
                 >
                   GitHub
                 </a>
-              </li>
-              <li>
-                <Link href="#" className="text-sm text-gray-500 hover:text-white transition-colors">
-                  Documentation
-                </Link>
               </li>
             </ul>
           </div>
