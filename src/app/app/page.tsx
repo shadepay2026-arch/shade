@@ -6,6 +6,24 @@ import { useWallet } from '@/components/WalletProvider'
 import Link from 'next/link'
 import Image from 'next/image'
 
+// Mock staking data
+const mockStakingData = {
+  stakedAmount: 1250,
+  tier: 'Silver',
+  tierNumber: 2,
+  pendingRewards: 12.45,
+  nextTier: 'Gold',
+  nextTierRequirement: 10000,
+  apy: 8.5,
+}
+
+const tierThresholds = [
+  { name: 'None', min: 0, color: 'gray' },
+  { name: 'Bronze', min: 100, color: 'orange' },
+  { name: 'Silver', min: 1000, color: 'slate' },
+  { name: 'Gold', min: 10000, color: 'yellow' },
+]
+
 // Mock authorization data
 const mockAuthorizations = [
   {
@@ -168,6 +186,271 @@ function AuthorizationCard({ auth }: { auth: typeof mockAuthorizations[0] }) {
           </button>
         )}
       </div>
+    </motion.div>
+  )
+}
+
+function StakingPanel() {
+  const { isDemo } = useWallet()
+  const [showStakeModal, setShowStakeModal] = useState(false)
+  const [stakeAction, setStakeAction] = useState<'stake' | 'unstake'>('stake')
+  
+  const progressToNext = ((mockStakingData.stakedAmount - 1000) / (mockStakingData.nextTierRequirement - 1000)) * 100
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.15 }}
+      className="mb-8"
+    >
+      <h2 className="text-lg font-semibold mb-4">Staking</h2>
+      <div className="grid md:grid-cols-2 gap-4">
+        {/* Stake Info Card */}
+        <div className="card">
+          <div className="flex items-start justify-between mb-4">
+            <div>
+              <p className="text-sm text-gray-400 mb-1">Your Stake</p>
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl font-bold">{mockStakingData.stakedAmount.toLocaleString()}</span>
+                <span className="text-gray-400">$SHADE</span>
+              </div>
+            </div>
+            <div className={`px-3 py-1.5 rounded-lg font-semibold text-sm ${
+              mockStakingData.tier === 'Gold' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' :
+              mockStakingData.tier === 'Silver' ? 'bg-slate-400/20 text-slate-300 border border-slate-400/30' :
+              mockStakingData.tier === 'Bronze' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30' :
+              'bg-gray-500/20 text-gray-400 border border-gray-500/30'
+            }`}>
+              {mockStakingData.tier} Tier
+            </div>
+          </div>
+
+          {/* Progress to next tier */}
+          <div className="mb-4">
+            <div className="flex justify-between text-sm text-gray-400 mb-2">
+              <span>Progress to {mockStakingData.nextTier}</span>
+              <span>{mockStakingData.nextTierRequirement.toLocaleString()} $SHADE required</span>
+            </div>
+            <div className="h-2 bg-shade-700 rounded-full overflow-hidden">
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: `${Math.min(progressToNext, 100)}%` }}
+                transition={{ duration: 1, ease: 'easeOut' }}
+                className="h-full bg-gradient-to-r from-brand-blue to-purple-500 rounded-full"
+              />
+            </div>
+          </div>
+
+          {/* Action buttons */}
+          <div className="flex gap-3">
+            <button 
+              onClick={() => { setStakeAction('stake'); setShowStakeModal(true) }}
+              className="flex-1 btn-primary text-sm"
+            >
+              Stake More
+            </button>
+            <button 
+              onClick={() => { setStakeAction('unstake'); setShowStakeModal(true) }}
+              className="flex-1 btn-secondary text-sm"
+            >
+              Unstake
+            </button>
+          </div>
+        </div>
+
+        {/* Rewards Card */}
+        <div className="card">
+          <div className="flex items-start justify-between mb-4">
+            <div>
+              <p className="text-sm text-gray-400 mb-1">Pending Rewards</p>
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl font-bold gradient-text">{mockStakingData.pendingRewards.toFixed(2)}</span>
+                <span className="text-gray-400">USDC</span>
+              </div>
+            </div>
+            <div className="text-right">
+              <p className="text-sm text-gray-400">Est. APY</p>
+              <p className="text-lg font-semibold text-green-400">{mockStakingData.apy}%</p>
+            </div>
+          </div>
+
+          <p className="text-sm text-gray-400 mb-4">
+            Earn fees from all protocol activity. Rewards accumulate in real-time.
+          </p>
+
+          <button 
+            className="w-full btn-primary flex items-center justify-center gap-2"
+            disabled={mockStakingData.pendingRewards === 0}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Claim Rewards
+          </button>
+
+          {isDemo && (
+            <p className="text-xs text-yellow-400/70 text-center mt-3">
+              Demo mode: Staking actions are simulated
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Tier Benefits */}
+      <div className="mt-4 card">
+        <h3 className="font-semibold mb-3">Tier Benefits</h3>
+        <div className="grid grid-cols-4 gap-2 text-center text-sm">
+          {tierThresholds.map((tier, i) => (
+            <div 
+              key={tier.name}
+              className={`p-3 rounded-lg border ${
+                mockStakingData.tier === tier.name 
+                  ? 'border-brand-blue bg-brand-blue/10' 
+                  : 'border-shade-700 bg-shade-800/50'
+              }`}
+            >
+              <p className={`font-semibold ${
+                tier.name === 'Gold' ? 'text-yellow-400' :
+                tier.name === 'Silver' ? 'text-slate-300' :
+                tier.name === 'Bronze' ? 'text-orange-400' :
+                'text-gray-500'
+              }`}>{tier.name}</p>
+              <p className="text-xs text-gray-400 mt-1">{tier.min.toLocaleString()}+ $SHADE</p>
+              <p className="text-xs text-gray-500 mt-1">{i === 0 ? '0.5x' : i === 1 ? '1x' : i === 2 ? '5x' : '10x'} Cap</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Stake/Unstake Modal */}
+      <AnimatePresence>
+        {showStakeModal && (
+          <StakeModal action={stakeAction} onClose={() => setShowStakeModal(false)} />
+        )}
+      </AnimatePresence>
+    </motion.div>
+  )
+}
+
+function StakeModal({ action, onClose }: { action: 'stake' | 'unstake', onClose: () => void }) {
+  const { isDemo } = useWallet()
+  const [amount, setAmount] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true)
+    await new Promise(resolve => setTimeout(resolve, 2000))
+    setIsSubmitting(false)
+    setIsSuccess(true)
+    setTimeout(onClose, 1500)
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.95, opacity: 0 }}
+        onClick={e => e.stopPropagation()}
+        className="w-full max-w-md card"
+      >
+        {isSuccess ? (
+          <div className="text-center py-8">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="w-16 h-16 mx-auto mb-4 rounded-full bg-green-500/20 flex items-center justify-center"
+            >
+              <svg className="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </motion.div>
+            <h3 className="text-xl font-semibold mb-2">
+              {action === 'stake' ? 'Staked Successfully!' : 'Unstaked Successfully!'}
+            </h3>
+            <p className="text-gray-400">Your tier has been updated.</p>
+          </div>
+        ) : (
+          <>
+            <h3 className="text-xl font-semibold mb-6 capitalize">{action} $SHADE</h3>
+
+            {isDemo && (
+              <div className="mb-4 p-3 bg-yellow-500/10 border border-yellow-500/30 rounded-lg flex items-start gap-2">
+                <svg className="w-5 h-5 text-yellow-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <p className="text-sm text-yellow-200">
+                  Demo mode: This is a simulated {action}. No real transactions will occur.
+                </p>
+              </div>
+            )}
+
+            <div className="mb-4">
+              <label className="block text-sm text-gray-400 mb-2">
+                Amount to {action}
+              </label>
+              <div className="relative">
+                <input
+                  type="number"
+                  value={amount}
+                  onChange={e => setAmount(e.target.value)}
+                  placeholder="0"
+                  className="w-full px-4 py-3 bg-shade-800 border border-shade-600 rounded-lg 
+                           focus:outline-none focus:border-brand-blue transition-colors pr-20"
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">$SHADE</span>
+              </div>
+              {action === 'unstake' && (
+                <p className="text-sm text-gray-500 mt-2">
+                  Available: {mockStakingData.stakedAmount.toLocaleString()} $SHADE
+                </p>
+              )}
+            </div>
+
+            {action === 'stake' && amount && Number(amount) > 0 && (
+              <div className="mb-4 p-3 bg-shade-800/50 rounded-lg border border-shade-700">
+                <p className="text-sm text-gray-400">
+                  New stake: {(mockStakingData.stakedAmount + Number(amount)).toLocaleString()} $SHADE
+                </p>
+                {mockStakingData.stakedAmount + Number(amount) >= 10000 && (
+                  <p className="text-sm text-yellow-400 mt-1">You'll reach Gold tier!</p>
+                )}
+              </div>
+            )}
+
+            <div className="flex gap-3">
+              <button onClick={onClose} className="flex-1 btn-secondary">
+                Cancel
+              </button>
+              <button
+                onClick={handleSubmit}
+                disabled={!amount || Number(amount) <= 0 || isSubmitting}
+                className="flex-1 btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 capitalize"
+              >
+                {isSubmitting ? (
+                  <>
+                    <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Processing...
+                  </>
+                ) : (
+                  action
+                )}
+              </button>
+            </div>
+          </>
+        )}
+      </motion.div>
     </motion.div>
   )
 }
@@ -486,6 +769,9 @@ export default function AppPage() {
                 </div>
               ))}
             </motion.div>
+
+            {/* Staking */}
+            <StakingPanel />
 
             {/* Authorizations */}
             <motion.div
