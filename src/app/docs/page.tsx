@@ -39,32 +39,47 @@ export default function DocsPage() {
         Instead of holding money in a wallet, users receive cryptographic permission to spend from shared liquidity pools.
       </p>
 
+      <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-8">
+        <p className="text-yellow-400 text-sm">
+          <strong>v0 Status:</strong> SHADE v0 is live on Solana. ZK privacy features are planned for v1 (opt-in). 
+          All protocol totals and transfers are currently public on-chain.
+        </p>
+      </div>
+
       <h3 className="text-xl font-semibold mb-3 mt-8">Key Principles</h3>
       <ul className="space-y-3 text-gray-300">
         <li className="flex items-start gap-3">
           <span className="text-brand-blue font-bold">1.</span>
           <div>
-            <strong>Accountless</strong> - No persistent balances or wallet state on-chain
+            <strong>Authorization-Based</strong> - Spend without owning; prove permission to access shared pools
           </div>
         </li>
         <li className="flex items-start gap-3">
           <span className="text-brand-blue font-bold">2.</span>
           <div>
-            <strong>Privacy-First</strong> - ZK proofs verify eligibility without exposing identity
+            <strong>Programmable</strong> - Spending caps, time windows, and purpose restrictions
           </div>
         </li>
         <li className="flex items-start gap-3">
           <span className="text-brand-blue font-bold">3.</span>
           <div>
-            <strong>Programmable</strong> - Spending caps, time windows, and purpose restrictions
+            <strong>Staking Rewards</strong> - Stake $SHADE to unlock tiers and earn USDC from fees
           </div>
         </li>
         <li className="flex items-start gap-3">
           <span className="text-brand-blue font-bold">4.</span>
           <div>
-            <strong>Non-Custodial</strong> - Users control their authorizations, not the protocol
+            <strong>Transparent</strong> - Open source, auditable smart contracts on Solana
           </div>
         </li>
+      </ul>
+      
+      <h3 className="text-xl font-semibold mb-3 mt-8">Trust Model (v0)</h3>
+      <ul className="space-y-2 text-gray-400 text-sm">
+        <li>• <strong>Fog Pools:</strong> Authority-managed, custodial. Depositors trust pool authority.</li>
+        <li>• <strong>Staking:</strong> Self-custodial. Users control their own stake/unstake.</li>
+        <li>• <strong>Rewards:</strong> Self-custodial. Users claim their own USDC rewards.</li>
+        <li>• <strong>Privacy:</strong> Not implemented in v0. All transactions are public.</li>
       </ul>
 
       <h3 className="text-xl font-semibold mb-3 mt-8">Quick Links</h3>

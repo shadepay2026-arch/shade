@@ -11,6 +11,7 @@ const sidebarLinks = [
   { href: '/docs/authorization', label: 'Authorization' },
   { href: '/docs/staking', label: 'Staking' },
   { href: '/docs/token', label: '$SHADE Token' },
+  { href: '/docs/roadmap', label: 'Roadmap' },
   { href: '/docs/faq', label: 'FAQ' },
 ]
 

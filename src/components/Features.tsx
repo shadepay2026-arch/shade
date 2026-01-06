@@ -6,34 +6,34 @@ import { useRef } from 'react'
 
 const features = [
   {
-    title: 'Accountless',
-    description: 'No wallets, no addresses, no balances. Users exist only during authorization events.',
-    tags: ['No Wallets', 'No Addresses'],
+    title: 'Authorization-Based',
+    description: 'Spend without owning. Receive cryptographic permission to access shared liquidity pools.',
+    tags: ['v0 Live', 'Core Feature'],
   },
   {
     title: 'Fog Pools',
-    description: 'Shared liquidity reservoirs where ownership attribution is intentionally impossible.',
-    tags: ['Pooled Capital', 'Non-attributable'],
+    description: 'Shared liquidity reservoirs managed by pool authorities. Funds drawn at time of spend.',
+    tags: ['v0 Live', 'Pooled Capital'],
   },
   {
-    title: 'ZK Identity',
-    description: 'Prove eligibility and compliance without revealing identity, history, or patterns.',
-    tags: ['Privacy', 'Zero-Knowledge'],
+    title: 'Staking & Rewards',
+    description: 'Stake $SHADE to unlock higher spending tiers and earn USDC from protocol fees.',
+    tags: ['v0 Live', 'Earn USDC'],
   },
   {
     title: 'Constraints',
     description: 'Spending caps, time windows, and purpose restrictions. Security through policy.',
-    tags: ['Programmable', 'Revocable'],
+    tags: ['v0 Live', 'Programmable'],
   },
   {
-    title: 'Stateless',
-    description: 'Contracts store no user data. The chain only verifies proof validity and pool solvency.',
-    tags: ['No State', 'Scalable'],
+    title: 'Open Source',
+    description: 'Fully auditable smart contracts on Solana. Verify everything on GitHub.',
+    tags: ['Transparent', 'Auditable'],
   },
   {
-    title: 'Intent-Driven',
-    description: 'Express what you want to spend—the protocol handles execution without identity.',
-    tags: ['Intents', 'Permissionless'],
+    title: 'Privacy Layer',
+    description: 'ZK-based authorization unlinking planned for v1. Opt-in privacy, not default.',
+    tags: ['v1 Planned', 'Opt-In'],
   },
 ]
 

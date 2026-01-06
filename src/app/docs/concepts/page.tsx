@@ -32,11 +32,11 @@ export default function ConceptsPage() {
             </ul>
           </div>
           <div>
-            <p className="text-brand-blue mb-2">SHADE</p>
+            <p className="text-brand-blue mb-2">SHADE (v0)</p>
             <ul className="text-gray-300 space-y-1">
               <li>You can spend up to 500 USDC</li>
               <li>No balance, just permission</li>
-              <li>Spending is private</li>
+              <li>Transactions still public (v0)</li>
               <li>Lose keys = lose permission only</li>
             </ul>
           </div>
@@ -45,13 +45,13 @@ export default function ConceptsPage() {
 
       <h2 className="text-2xl font-bold mb-4" id="fog-pools">Fog Pools</h2>
       <p className="text-gray-300 mb-4">
-        Fog Pools are shared liquidity reservoirs where ownership attribution is 
-        <strong> intentionally impossible</strong>. When liquidity providers deposit funds, 
-        they receive LP tokens but the deposited assets become part of an undifferentiated pool.
+        Fog Pools are shared liquidity reservoirs managed by a pool authority.
+        When the authority issues an authorization, the authorized user can spend from the pool.
       </p>
       <p className="text-gray-300 mb-6">
-        When an authorized user spends, funds are drawn from the Fog Pool. Because there is no 
-        way to trace which deposit funded which spend, privacy is cryptographically guaranteed.
+        <strong>Trust Model (v0):</strong> Fog Pools are custodial. Depositors trust the pool 
+        authority to manage funds responsibly. There is no withdrawal mechanism in v0 — 
+        deposits are contributions to the pool, not retrievable balances.
       </p>
 
       <div className="bg-shade-800 rounded-lg p-6 mb-8">
@@ -62,22 +62,40 @@ export default function ConceptsPage() {
         </div>
       </div>
 
-      <h2 className="text-2xl font-bold mb-4" id="zk-identity">ZK Identity</h2>
+      <h2 className="text-2xl font-bold mb-4" id="zk-identity">ZK Identity (v1 Planned)</h2>
+      
+      <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-6">
+        <p className="text-yellow-400 text-sm">
+          <strong>Note:</strong> ZK Identity is planned for v1. It is NOT implemented in v0.
+          All v0 transactions are public on-chain.
+        </p>
+      </div>
+      
       <p className="text-gray-300 mb-4">
-        Zero-Knowledge proofs allow users to prove statements about themselves without 
-        revealing the underlying data. In SHADE, ZK-ID enables:
+        In v1, Zero-Knowledge proofs will allow users to prove authorization validity without 
+        revealing which specific authorization they hold. This is called <strong>authorization unlinking</strong>.
       </p>
+      
+      <h4 className="font-semibold mb-3 text-lg">What v1 Privacy Will Hide (Opt-In)</h4>
       <ul className="list-disc list-inside text-gray-300 space-y-2 mb-6">
-        <li><strong>Eligibility proofs</strong> - Prove you qualify for an authorization tier</li>
-        <li><strong>Compliance proofs</strong> - Satisfy regulatory requirements privately</li>
-        <li><strong>Spend proofs</strong> - Verify authorization validity without exposing identity</li>
+        <li><strong>Spender ↔ Authorization link</strong> - Which authorization is being used</li>
+        <li><strong>Spending cap</strong> - The maximum amount authorized</li>
+        <li><strong>Amount remaining</strong> - How much is left to spend</li>
+      </ul>
+
+      <h4 className="font-semibold mb-3 text-lg">What Will Remain Public</h4>
+      <ul className="list-disc list-inside text-gray-400 space-y-2 mb-6">
+        <li>Spend amounts (visible in token transfers)</li>
+        <li>Transaction signers (unless relayer used)</li>
+        <li>Protocol totals (fees collected, total staked)</li>
+        <li>Fog Pool balances</li>
       </ul>
 
       <div className="bg-shade-800 rounded-lg p-6 mb-8">
-        <h4 className="font-semibold mb-3">Example</h4>
+        <h4 className="font-semibold mb-3">v1 Privacy Goal</h4>
         <p className="text-gray-300 text-sm">
-          A user can prove I am over 18 and I have staked enough $SHADE for Tier 2 access 
-          without revealing their actual age, stake amount, or wallet address.
+          An observer cannot determine WHICH authorization a spend drew from.
+          This is authorization unlinking, not full anonymity.
         </p>
       </div>
 

@@ -37,7 +37,7 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full border border-shade-600 bg-shade-900/50 backdrop-blur-sm"
         >
           <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          <span className="text-sm text-gray-300">Introducing SHADE Protocol</span>
+          <span className="text-sm text-gray-300">v0 Live on Solana — Authorization-Based Finance</span>
         </motion.div>
 
         {/* Main heading */}
@@ -89,10 +89,10 @@ export default function Hero() {
           className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto"
         >
           {[
-            { label: 'Privacy', value: 'ZK-Native' },
+            { label: 'Status', value: 'v0 Live' },
             { label: 'Speed', value: '<1s' },
-            { label: 'Accounts', value: 'Zero' },
-            { label: 'Balances', value: 'None' },
+            { label: 'Chain', value: 'Solana' },
+            { label: 'Privacy', value: 'v1 Planned' },
           ].map((stat, i) => (
             <div key={i} className="text-center">
               <div className="text-2xl md:text-3xl font-bold text-white mb-1">

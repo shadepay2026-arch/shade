@@ -29,24 +29,24 @@ const steps = [
 
 const comparison = [
   {
-    aspect: 'User State',
-    traditional: 'Persistent accounts and balances',
-    shade: 'Ephemeral—exists only during authorization',
-  },
-  {
-    aspect: 'Privacy',
-    traditional: 'Transaction history fully exposed',
-    shade: 'ZK proofs reveal nothing about identity',
+    aspect: 'Spending Model',
+    traditional: 'Own first, then spend',
+    shade: 'Authorize first, spend from pools',
   },
   {
     aspect: 'Liquidity',
     traditional: 'Fragmented across individual wallets',
-    shade: 'Unified fog pools, non-attributable',
+    shade: 'Unified Fog Pools (authority-managed)',
   },
   {
-    aspect: 'Security',
-    traditional: 'Protect your private keys',
-    shade: 'Protect your authorization policies',
+    aspect: 'Constraints',
+    traditional: 'Unlimited spending if you own it',
+    shade: 'Caps, expiry, purpose restrictions',
+  },
+  {
+    aspect: 'Privacy (v1)',
+    traditional: 'Transaction history fully exposed',
+    shade: 'Authorization unlinking planned',
   },
 ]
 
